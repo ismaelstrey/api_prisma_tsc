@@ -8,7 +8,7 @@ router.use((req: Request, res: Response, next: NextFunction) => {
 
   next();
   router.get("/", (req: Request, res: Response) => {
-    res.send("Olá mundo");
+    res.send("Olá mundo teste");
   });
   router.get("/tiket", get);
   router.post("/tiket", create);

@@ -8,7 +8,30 @@ export const createTiket = async (data: any) => {
 };
 
 export const getAll = async () => {
-  const tiket = await prisma.tiket.findMany({});
+  const tiket = await prisma.tiket.findMany({
+    select: {
+      id: true,
+      problema_informado: true,
+      observacao: true,
+      created_at: true,
+      updated_at: true,
+      prioridadeId: false,
+      tecnicoId: false,
+      tiketStatusId: false,
+      empresaId: false,
+      categoriaId: false,
+
+      empresa: true,
+      prioridade: true,
+      tecnico: {
+        include: {
+          tecnico_tipo: true,
+        },
+      },
+      categoria: true,
+      status: true,
+    },
+  });
   return tiket;
 };
 
