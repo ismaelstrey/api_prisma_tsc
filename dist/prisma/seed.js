@@ -17,12 +17,71 @@ const userData = [
         name: faker_1.faker.internet.userName(),
         email: faker_1.faker.internet.email(),
         password: faker_1.faker.random.numeric(5),
+        phone: faker_1.faker.phone.number(),
     },
 ];
 const tiketData = [
     {
         problema_informado: faker_1.faker.random.words(5),
         observacao: faker_1.faker.random.words(10),
+        status: {
+            create: {
+                name: "aberto",
+            },
+        },
+        prioridade: {
+            create: {
+                name: "média",
+                icon: "acitive",
+                color: "green",
+            },
+        },
+        tecnico: {
+            create: {
+                name: faker_1.faker.internet.userName(),
+                email: faker_1.faker.internet.email(),
+                type: "ativo",
+                tecnico_tipo: {
+                    create: {
+                        name: "nv2",
+                    },
+                },
+            },
+        },
+        empresa: {
+            create: {
+                name: faker_1.faker.company.name(),
+                razao_social: faker_1.faker.company.name(),
+                nome_fantasia: faker_1.faker.company.name(),
+                tipo: faker_1.faker.company.companySuffix(),
+                ie: faker_1.faker.random.numeric(5),
+                clientes: faker_1.faker.random.numeric(4),
+                cliente: {
+                    connectOrCreate: {
+                        where: {
+                            email: faker_1.faker.internet.email(),
+                        },
+                        create: {
+                            name: faker_1.faker.internet.userName(),
+                            email: faker_1.faker.internet.email(),
+                            status: true,
+                        },
+                    },
+                },
+            },
+        },
+        categoria: {
+            create: {
+                color: faker_1.faker.color.rgb(),
+                name: "suporte",
+                subcategoria: {
+                    create: {
+                        color: faker_1.faker.color.rgb(),
+                        name: "Falta de internet",
+                    },
+                },
+            },
+        },
     },
 ];
 function main() {
@@ -38,6 +97,7 @@ function main() {
             const tiket = yield prisma.tiket.create({
                 data: t,
             });
+            console.log("Tiket faker criado com sucesso");
         }
         console.log(`Seeding finished.`);
     });

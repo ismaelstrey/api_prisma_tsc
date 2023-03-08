@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateTiket = exports.getById = exports.getAll = exports.createTiket = void 0;
 const prisma_1 = require("../services/prisma");
 const createTiket = (data) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(data);
     const tiket = yield prisma_1.prisma.tiket.create({
         data,
     });
@@ -20,7 +19,29 @@ const createTiket = (data) => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.createTiket = createTiket;
 const getAll = () => __awaiter(void 0, void 0, void 0, function* () {
-    const tiket = yield prisma_1.prisma.tiket.findMany({});
+    const tiket = yield prisma_1.prisma.tiket.findMany({
+        select: {
+            id: true,
+            problema_informado: true,
+            observacao: true,
+            created_at: true,
+            updated_at: true,
+            prioridadeId: false,
+            tecnicoId: false,
+            tiketStatusId: false,
+            empresaId: false,
+            categoriaId: false,
+            empresa: true,
+            prioridade: true,
+            tecnico: {
+                include: {
+                    tecnico_tipo: true,
+                },
+            },
+            categoria: true,
+            status: true,
+        },
+    });
     return tiket;
 });
 exports.getAll = getAll;
