@@ -1,29 +1,12 @@
-version: '3.1'
+version: '3'
 
 services:
-
-  db:
-    image: postgres
-    restart: always
-    environment:
-      POSTGRES_PASSWORD: ${POST_ROOT_PASSWORD}
-      POSTGRES_USER: ${POST_USER}
-      POSTGRES_DB: ${POST_DB}
-      POSTGRES_PORT: ${POST_PORT}
-      POSTGRESQL_MASTER_PORT_NUMBER: "5432"
-    networks:
-      - my-networks
+  db-postgres-evento:
+    image: postgres:alpine
     ports:
       - ${POST_PORT}:5432
-
-  adminer:
-    image: adminer
+    container_name: "db-postgres-tiket"
     restart: always
-    ports:
-      - 8080:8080
-    networks:
-      - my-networks
-
-networks:
-  my-networks:
-    driver: bridge
+    environment:
+      - POSTGRES_USER=${POST_USER:-user}
+      - POSTGRES_PASSWORD=${POST_PASSWORD:-123456}
