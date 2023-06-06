@@ -9,9 +9,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.update = exports.getId = exports.get = exports.create = void 0;
+exports.updateTiketId = exports.findOneTiket = exports.getAllTiket = exports.newTiket = void 0;
 const tiket_repository_1 = require("../repositorys/tiket.repository");
-const create = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const newTiket = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const tiket = yield (0, tiket_repository_1.createTiket)(req.body);
         res.status(200).send(tiket);
@@ -20,8 +20,8 @@ const create = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.status(400).send(error);
     }
 });
-exports.create = create;
-const get = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.newTiket = newTiket;
+const getAllTiket = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const tikets = yield (0, tiket_repository_1.getAll)();
         console.log(tikets);
@@ -31,8 +31,8 @@ const get = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.status(400).send(error);
     }
 });
-exports.get = get;
-const getId = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getAllTiket = getAllTiket;
+const findOneTiket = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const tiket = yield (0, tiket_repository_1.getById)(Number(req.params.id));
         res.status(200).send(tiket);
@@ -41,8 +41,8 @@ const getId = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         console.log(error);
     }
 });
-exports.getId = getId;
-const update = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.findOneTiket = findOneTiket;
+const updateTiketId = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const tiket = yield (0, tiket_repository_1.updateTiket)(Number(req.params.id), req.body);
         res.status(200).send(tiket);
@@ -51,5 +51,5 @@ const update = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         console.log(error);
     }
 });
-exports.update = update;
+exports.updateTiketId = updateTiketId;
 //# sourceMappingURL=ticket.controller.js.map

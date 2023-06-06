@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response, Router } from "express";
 import { getAllTiket, newTiket } from "../controllers/ticket.controller";
-import { findOneCategory, getAllCategory, newCategory, updateOneCategory } from "../controllers/categoria.controller";
-import { findOneSubcategory, getAllSubcategory, newSubcategory, updateOneSubcategory } from "../controllers/subcategoria.controller";
-import { getAllTiketStatus, newTiketStatus } from "../controllers/tiketstatus.controller";
+import { getAllCategory, newCategory } from "../controllers/categoria.controller";
+import { getAllSubcategory, newSubcategory } from "../controllers/subcategoria.controller";
+import { getAllTiketStatus, newTiketStatus } from "../controllers/tiketStatus.controller";
 
 const router = Router();
 
