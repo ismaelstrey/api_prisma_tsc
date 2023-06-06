@@ -9,6 +9,6 @@ app.use(cors());
 app.use(express.json());
 app.use(router);
 
-app.listen({ host: process.env.HOST, port: process.env.PORT }, () =>
-  console.log(`${process.env.HOST}:${process.env.PORT}`)
+app.listen(process.env.PORT, () =>
+  console.log(`${process.env.PORT}`)
 );

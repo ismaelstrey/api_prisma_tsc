@@ -12,5 +12,5 @@ const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.use(routes_1.default);
-app.listen({ host: process.env.HOST, port: process.env.PORT }, () => console.log(`${process.env.HOST}:${process.env.PORT}`));
+app.listen(process.env.PORT, () => console.log(`${process.env.PORT}`));
 //# sourceMappingURL=index.js.map
